@@ -11,25 +11,25 @@ public class CharacterController : ControllerBase
         _characterService = characterService;
     }
 
-    [HttpGet("GetAll")]
+    [HttpGet("v1/GetAll")]
     public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> Get()
     {
         return Ok(await _characterService.GetAllCharacters());
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("v1/{id}")]
     public async Task<ActionResult<ServiceResponse<GetCharacterDto>>> GetCharacter(int id)
     {
         return Ok(await _characterService.GetCharacterById(id));
     }
 
-    [HttpPost]
+    [HttpPost("v1")]
     public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> AddCharacter(AddCharacterDto newCaracter)
     {
         return Ok(await _characterService.AddCharacter(newCaracter));
     }
 
-    [HttpPut]
+    [HttpPut("v1")]
     public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> UpdateCharacter(UpdateCharacterDto updateCaracter)
     {
         var response = await _characterService.UpdateCharacter(updateCaracter);
@@ -39,7 +39,7 @@ public class CharacterController : ControllerBase
         return Ok(response);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("v1/{id}")]
     public async Task<ActionResult<ServiceResponse<GetCharacterDto>>> DeleteCharacter(int id)
     {
         var response = await _characterService.DeleteCharacter(id);
